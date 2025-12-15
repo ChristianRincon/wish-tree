@@ -7,21 +7,21 @@ import type { WishModel } from '../models/wishModel';
  * @param wishes - Array de deseos obtenidos de Supabase
  */
 export function renderTree(wishes: WishModel[]): void {
-  const treeContainer = document.getElementById('wish');
+  const wishContainer = document.getElementById('wish');
   
-  if (!treeContainer) {
+  if (!wishContainer) {
     console.error('No se encontró el elemento con id="wish"');
     return;
   }
 
   // Limpiar contenido previo
-  treeContainer.innerHTML = '';
+  wishContainer.innerHTML = '';
 
   if (wishes.length === 0) {
     const emptyMessage = document.createElement('p');
     emptyMessage.className = 'empty-message';
     emptyMessage.textContent = '❄️ Sé el primero en dejar tu deseo';
-    treeContainer.appendChild(emptyMessage);
+    wishContainer.appendChild(emptyMessage);
     return;
   }
 
@@ -50,7 +50,7 @@ export function renderTree(wishes: WishModel[]): void {
     const info = document.createElement('div');
     info.className = 'wish-info';
     info.innerHTML = `
-      <strong>${wish.name}</strong>
+      <div class="wish-name"><strong>${wish.name}</strong></div>
       ${wish.age ? `<div class="wish-age">${wish.age} años</div>` : ''}
       ${wish.country ? `<div class="wish-country">${wish.country}</div>` : ''}
       <div class="wish-text">"${wish.wish_text}"</div>
@@ -71,7 +71,7 @@ export function renderTree(wishes: WishModel[]): void {
       snowflake.classList.remove('hovered');
     });
     
-    treeContainer.appendChild(snowflake);
+    wishContainer.appendChild(snowflake);
   });
 }
 
