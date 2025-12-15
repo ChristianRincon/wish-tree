@@ -28,7 +28,7 @@ export function renderTree(wishes: WishModel[]): void {
   }
 
   // Crear un wish-snowflake para cada deseo
-  wishes.forEach((wish, index) => {
+  wishes.forEach((wish) => {
     const snowflake = document.createElement('div');
     snowflake.className = 'wish-snowflake';
     
