@@ -1,5 +1,7 @@
 import type { WishModel } from '../models/wishModel';
 
+const WISH_EMOJIS = ['✨', '🎄', '🎅', '⛄', '🔔', '🎁', '⭐', '❤️', '💚', '🌟', '🍪', '🎂'];
+
 /**
  * Renderiza los deseos como copos de nieve que caen por la pantalla.
  * Los deseos se mueven libremente, pero se detienen al pasar el mouse.
@@ -26,7 +28,7 @@ export function renderTree(wishes: WishModel[]): void {
   }
 
   // Crear un wish-snowflake para cada deseo
-  wishes.forEach((wish) => {
+  wishes.forEach((wish, index) => {
     const snowflake = document.createElement('div');
     snowflake.className = 'wish-snowflake';
     
@@ -41,10 +43,11 @@ export function renderTree(wishes: WishModel[]): void {
     snowflake.style.setProperty('--delay', `${randomDelay}s`);
     snowflake.style.setProperty('--swing', `${randomSwing}px`);
     
-    // Contenedor para el emoji
+    // Contenedor para el emoji - seleccionar uno aleatorio
     const emoji = document.createElement('span');
     emoji.className = 'wish-emoji';
-    emoji.textContent = '✨';
+    const randomEmoji = WISH_EMOJIS[Math.floor(Math.random() * WISH_EMOJIS.length)];
+    emoji.textContent = randomEmoji;
     
     // Contenedor para la información del deseo
     const info = document.createElement('div');
