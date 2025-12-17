@@ -1,7 +1,9 @@
 import { addWish } from '../services/wish_services/addWish';
 import { renderTree, getWishes } from '../main';
+import { playSound } from '../utils/playSound';
 
 export function openModal(): void {
+  playSound('src/utils/sounds/ho-ho-ho.mp3');
   const modalBackdrop = document.createElement('div');
   modalBackdrop.className = 'modal-backdrop';
 
@@ -90,6 +92,7 @@ export function openModal(): void {
 
   wishForm.addEventListener('submit', async (e) => {
     e.preventDefault();
+    playSound('src/utils/sounds/wish-button-sound.mp3');
 
     const name = nameInput.value.trim();
     const age = ageInput.value ? parseInt(ageInput.value, 10) : undefined;
